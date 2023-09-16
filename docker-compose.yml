@@ -1,0 +1,12 @@
+version: "3.9"
+name: training-project
+services:
+  front:
+    container_name: training-project
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "3000:80"
