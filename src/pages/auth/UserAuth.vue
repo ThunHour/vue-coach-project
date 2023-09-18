@@ -66,7 +66,7 @@ export default {
   },
   methods: {
     verify(token) {
-      if (token == "") {
+      if (token != "") {
         this.isBot = false;
       } else {
         this.isBot = true;
