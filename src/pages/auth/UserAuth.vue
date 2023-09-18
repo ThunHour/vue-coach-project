@@ -16,9 +16,8 @@
           <label for="password">Password</label>
           <input type="password" id="password" v-model.trim="password" />
         </div>
-        <p
-          v-if="!formIsValid"
-        >Please enter a valid email and password (must be at least 6 characters long).</p>
+        <p v-if="!formIsValid">Please enter a valid email and password (must be at least 6 characters long).</p>
+        <Turnstile :sitekey="sitekey" @verify="verify"></Turnstile>
         <base-button>{{ submitButtonCaption }}</base-button>
         <base-button type="button" mode="flat" @click="switchAuthMode">{{ switchModeButtonCaption }}</base-button>
       </form>
@@ -27,7 +26,11 @@
 </template>
 
 <script>
+import Turnstile from 'cfturnstile-vue3'
 export default {
+  components: {
+    Turnstile
+  },
   data() {
     return {
       email: '',
@@ -36,6 +39,7 @@ export default {
       mode: 'login',
       isLoading: false,
       error: null,
+      sitekey: '0x4AAAAAAAKRt3qTfzk7ubgx'
     };
   },
   computed: {
@@ -55,6 +59,9 @@ export default {
     },
   },
   methods: {
+    verify(token) {
+      console.log(token)
+    },
     async submitForm() {
       this.formIsValid = true;
       if (
