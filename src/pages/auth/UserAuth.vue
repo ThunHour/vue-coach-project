@@ -18,7 +18,12 @@
         </div>
         <p v-if="!formIsValid">Please enter a valid email and password (must be at least 6 characters long).</p>
         <Turnstile :sitekey="sitekey" @verify="verify"></Turnstile>
-        <base-button>{{ submitButtonCaption }}</base-button>
+        <base-button :style="[isBot ? {
+          'background-color': '#CBCBCB',
+          'border-color': '#CBCBCB',
+          'cursor': 'default'
+        } : {}]" disabled="isBot">{{ submitButtonCaption
+}}</base-button>
         <base-button type="button" mode="flat" @click="switchAuthMode">{{ switchModeButtonCaption }}</base-button>
       </form>
     </base-card>
@@ -39,7 +44,8 @@ export default {
       mode: 'login',
       isLoading: false,
       error: null,
-      sitekey: '0x4AAAAAAAKRt3qTfzk7ubgx'
+      sitekey: '0x4AAAAAAAKRt3qTfzk7ubgx',
+      isBot: true,
     };
   },
   computed: {
@@ -60,7 +66,11 @@ export default {
   },
   methods: {
     verify(token) {
-      console.log(token)
+      if (token == "") {
+        this.isBot = false;
+      } else {
+        this.isBot = true;
+      }
     },
     async submitForm() {
       this.formIsValid = true;
