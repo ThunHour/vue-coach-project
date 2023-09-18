@@ -22,7 +22,7 @@
           'background-color': '#CBCBCB',
           'border-color': '#CBCBCB',
           'cursor': 'default'
-        } : {}]" disabled="isBot">{{ submitButtonCaption
+        } : {}]" :disabled="isBot">{{ submitButtonCaption
 }}</base-button>
         <base-button type="button" mode="flat" @click="switchAuthMode">{{ switchModeButtonCaption }}</base-button>
       </form>
