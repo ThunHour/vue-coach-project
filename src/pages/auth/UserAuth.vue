@@ -44,7 +44,7 @@ export default {
       mode: 'login',
       isLoading: false,
       error: null,
-      sitekey: '0x4AAAAAAAKRt3qTfzk7ubgx',
+      sitekey: '0x4AAAAAAAKWdu8jbykY_mX5',
       isBot: true,
     };
   },
